@@ -3,8 +3,8 @@ Documentation       Test Infortiv Car Rental web,
 ...                 for the VG part I test by using Gherkin syntax
 Resource            ../TestLabAuto/Resource/keywords.robot
 Library             SeleniumLibrary
-Suite Setup          Generate Tests
-Suite Teardown       End the test
+Test Setup          Generate Tests
+Test Teardown       End the test
 
 *** Variables ***
 ${BROWSER}          chrome
@@ -57,9 +57,9 @@ I select the car-brand and size
     # the checkbox //*[@id="ms-opt-7"] is always be seleted together with other checkboxes automatically
     # E.g. I selected //*[@id="ms-opt-6"] and //*[@id="ms-opt-5"] single or both,  the //*[@id="ms-opt-7"] is seleted
     # unexpectedly and automatically. I have to cancel this selection
-    # Click Button               //*[@id="ms-list-2"]/button
-    # Select Checkbox             //*[@id="ms-opt-5"]
-    # Select Checkbox             //*[@id="ms-opt-6"]
+    Click Button               //*[@id="ms-list-2"]/button
+    Select Checkbox             //*[@id="ms-opt-5"]
+    Select Checkbox             //*[@id="ms-opt-6"]
     Page Should Contain         Q7
 I can see cars-selected in the list
     Page Should Contain Element         //*[@id="carSelection"]
