@@ -3,7 +3,6 @@ Documentation       Test Infortiv Car Rental web,
 ...                 for the VG part I test by using Gherkin syntax
 Resource            ../TestLabAuto/Resource/keywords.robot
 Library             SeleniumLibrary
-Force Tags          VG_Test
 Suite Setup          Generate Tests
 Suite Teardown       End the test
 
@@ -13,11 +12,13 @@ ${URL}              http://www.rental8.infotiv.net/
 
 *** Test Cases ***
 # I set Forced Tag in settings, then all the test cases in this suite will be added this tag automatically
-User book a car online
+Scenario:User book a car online
+    [Documentation]            The test must navigate from the start page, log in to an existing account, book a car
+    [Tags]                      VG_Test
     Given I open the browser go to the web
     When I click the login button
     And I can login
-    And I select the date to continue       03/03/2021      03/30/2021
+    And I select the date to continue       03/10/2021      03/30/2021
     And I click continue-button to continue
     And I open the page with list of cars          Make        Passengers
     And I select the car-brand and size
@@ -51,10 +52,13 @@ I open the page with list of cars
     ${PASSENGERS}           Get Text        //*[@id="ms-list-2"]/button
     Should Be Equal         "${FILTER_PASSENGERS}"        "${PASSENGERS}"
 I select the car-brand and size
-    Click Element               //*[@id="ms-list-1"]/button
+    Click Button               //*[@id="ms-list-1"]/button
     Select Checkbox             //*[@id="ms-opt-1"]
-    # I only give one selection in passenger list, but always 2 checkbox are selected
-    # Click Element               //*[@id="ms-list-2"]/button
+    # the checkbox //*[@id="ms-opt-7"] is always be seleted together with other checkboxes automatically
+    # E.g. I selected //*[@id="ms-opt-6"] and //*[@id="ms-opt-5"] single or both,  the //*[@id="ms-opt-7"] is seleted
+    # unexpectedly and automatically. I have to cancel this selection
+    # Click Button               //*[@id="ms-list-2"]/button
+    # Select Checkbox             //*[@id="ms-opt-5"]
     # Select Checkbox             //*[@id="ms-opt-6"]
     Page Should Contain         Q7
 I can see cars-selected in the list
