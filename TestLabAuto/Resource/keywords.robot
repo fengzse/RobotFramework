@@ -25,11 +25,6 @@ Verify Page About Loaded
     Wait Until Page Contains Element        //*[@id="linkButton"]
     ${ACUTAL_BUTTON}      Get Text        //*[@id="linkButton"]
     Should Be Equal         "${BUTTON}"       "${ACUTAL_BUTTON}"
-Access to Documentation page
-    Click Element                  //*[@id="linkButton"]
-    Go To                           http://www.rental8.infotiv.net/webpage/documentation/index.html
-    Page Should Contain             Infotiv Car Rental Internship Project
-
 
 # Button "Creater user"
 Access To Registration Page
@@ -82,4 +77,7 @@ Login Fail By Wrong Input
     Page Should Contain         Wrong e-mail or password
     Page Should Contain Button        //*[@id="login"]
 End the test
+    Click Element               //*[@id="title"]
+    Wait Until Page Contains Element         //*[@id="reset"]
+    Click Button                //*[@id="reset"]
     Close Browser

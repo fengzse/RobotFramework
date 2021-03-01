@@ -4,7 +4,7 @@ Documentation       Test Infortiv Car Rental web,
 Resource            ../TestLabAuto/Resource/keywords.robot
 Library             SeleniumLibrary
 Test Setup          Generate Tests
-Test Teardown       End the test
+Test Teardown       End the test        # click reset and close broswer
 
 *** Variables ***
 ${BROWSER}          chrome
@@ -18,13 +18,12 @@ User can access the web site
     [Tags]                  Web_accessable
     Go To Web
 *** Test Cases ***
-User can access documentation page
-    [Documentation]         User can access documentation page by clicking ABOUT button
+User can access About page
+    [Documentation]         User can access About page by clicking ABOUT button
     [Tags]                  About_page
     Go To Web
     Click About             //*[@id="about"]
     Verify Page About Loaded       Documentation
-    Access to Documentation page
 *** Test Cases ***
 User can open regiseration page
     [Documentation]         User can access to the account registration page
