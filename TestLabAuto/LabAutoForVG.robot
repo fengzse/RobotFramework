@@ -18,12 +18,12 @@ Scenario:User book a car online
     Given I open the browser go to the web
     When I click the login button
     And I can login
-    And I select the date to continue       03/10/2021      03/30/2021
+    And I select the date to continue       03/21/2021      03/21/2021
     And I click continue-button to continue
     And I open the page with list of cars          Make        Passengers
     And I select the car-brand and size
     And I can see cars-selected in the list
-    And I click Book button to book Audi Q7 with 5 passengers
+    And I click Book button to book Volvo S90 with 5 passengers
     And I can see the page to confirm my booking and I fill in the forms       1234567891234567    feng    123
     Then My booking is confirmed and I can see or cancel my booking on MyPage
 
@@ -53,22 +53,23 @@ I open the page with list of cars
     Should Be Equal         "${FILTER_PASSENGERS}"        "${PASSENGERS}"
 I select the car-brand and size
     Click Button               //*[@id="ms-list-1"]/button
-    Select Checkbox             //*[@id="ms-opt-1"]
-    # the checkbox //*[@id="ms-opt-7"] is always be seleted together with other checkboxes automatically
+    Select Checkbox             //*[@id="ms-opt-3"]
+
+    # the checkbox //*[@id="ms-opt-7"] is sometimes seleted together with other checkboxes automatically
     # E.g. I selected //*[@id="ms-opt-6"] and //*[@id="ms-opt-5"] single or both,  the //*[@id="ms-opt-7"] is seleted
-    # unexpectedly and automatically. I have to cancel this selection
+    # unexpectedly and automatically. I think it is bug, because I just run the exactly same code but sometimes got
+    # failure
     Click Button               //*[@id="ms-list-2"]/button
     Select Checkbox             //*[@id="ms-opt-5"]
-    Select Checkbox             //*[@id="ms-opt-6"]
-    Page Should Contain         Q7
 I can see cars-selected in the list
     Page Should Contain Element         //*[@id="carSelection"]
-I click Book button to book Audi Q7 with 5 passengers
+    Click Element                       //*[@id="carSelection"]
+I click Book button to book Volvo S90 with 5 passengers
     Wait Until Page Contains Element    //*[@id="carSelect1"]
-    Press Keys              //input[@id="carSelect1"]           RETURN      # Click Button does't work, Press Keys works
+    Press Keys              //*[@id="carSelect1"]           RETURN      # Click Button does't work, Press Keys works
 I can see the page to confirm my booking and I fill in the forms
     [Arguments]                 ${CARD_NUM}     ${CARD_HOLDER}       ${CVC}
-    Page Should Contain                     Confirm booking of Audi Q7
+    Page Should Contain                     Confirm booking of Volvo S90
     Wait Until Page Contains Element        //*[@id="confirmSelection"]
     Page Should Contain Element             //*[@id="cardNum"]
     Input Text                              //input[@id="cardNum"]              ${CARD_NUM}
@@ -85,7 +86,7 @@ I can see the page to confirm my booking and I fill in the forms
     Page Should Contain Button              //*[@id="confirm"]
     Click Button                            //*[@id="confirm"]
 My booking is confirmed and I can see or cancel my booking on MyPage
-    Page Should Contain                     A Audi Q7 is now ready for pickup
+    Page Should Contain                     A Volvo S90 is now ready for pickup
     Wait Until Page Contains Element        //*[@id="home"]
     Page Should Contain                     You can view your booking on your page
     Wait Until Page Contains Element        //*[@id="mypage"]

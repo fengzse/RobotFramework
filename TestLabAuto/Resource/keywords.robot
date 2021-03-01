@@ -20,11 +20,16 @@ Verify Page Loaded
 Click About
     [Arguments]             ${CLICK}
     Press Keys              ${CLICK}        RETURN
-Verify Page About
+Verify Page About Loaded
     [Arguments]             ${BUTTON}
     Wait Until Page Contains Element        //*[@id="linkButton"]
     ${ACUTAL_BUTTON}      Get Text        //*[@id="linkButton"]
     Should Be Equal         "${BUTTON}"       "${ACUTAL_BUTTON}"
+Access to Documentation page
+    Click Element                  //*[@id="linkButton"]
+    Go To                           http://www.rental8.infotiv.net/webpage/documentation/index.html
+    Page Should Contain             Infotiv Car Rental Internship Project
+
 
 # Button "Creater user"
 Access To Registration Page
@@ -56,6 +61,13 @@ Click Login
     Press Keys                  //*[@id="login"]        RETURN
 Verify Login
     Page Should Contain         You are signed in as feng
+Varify MyPage and Logout button
+    Wait Until Page Contains Element        //*[@id="mypage"]
+    Click Button                            //*[@id="mypage"]
+    Page Should Contain                     My bookings
+    Wait Until Page Contains Element        //*[@id="logout"]
+    Click Button                            //*[@id="logout"]
+    Page Should Contain Button        //*[@id="login"]
 
 Login Fail By Missing Account
     [Arguments]                 ${LOGIN_BUTTON_TEXT}        ${CREATE_BUTTON_TEXT}
@@ -68,6 +80,6 @@ Login Fail By Missing Account
 
 Login Fail By Wrong Input
     Page Should Contain         Wrong e-mail or password
-
+    Page Should Contain Button        //*[@id="login"]
 End the test
     Close Browser

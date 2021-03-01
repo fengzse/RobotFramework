@@ -23,7 +23,8 @@ User can access documentation page
     [Tags]                  About_page
     Go To Web
     Click About             //*[@id="about"]
-    Verify Page About       Documentation
+    Verify Page About Loaded       Documentation
+    Access to Documentation page
 *** Test Cases ***
 User can open regiseration page
     [Documentation]         User can access to the account registration page
@@ -39,6 +40,7 @@ User can legally login
     Go To Web
     Login Account           feng.zhu@iths.se        abc123
     Verify Login
+    Varify MyPage and Logout button
 *** Test Cases ***
 User can not login by Wrong/Missing Email or Password
     [Documentation]         User can not login by inputting wrong account or/and password, or missing login info
